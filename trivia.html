@@ -7,6 +7,43 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <link href="styles.css" rel="stylesheet">
         <title>All About Me</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function()
+            {
+                let correct_input = document.querySelector('.correct');
+                correct_input.addEventListener('click', function()
+                {
+                    correct_input.style.backgroundColor = 'lime';
+                    document.querySelector('#multiple_feedback').innerHTML = 'Correct!';
+                });
+                let wrong_input = document.querySelectorAll('.wrong');
+                for (let i = 0; i < wrong_input.length; i++)
+                {
+                    wrong_input[i].addEventListener('click', function()
+                    {
+                        wrong_input[i].style.backgroundColor = 'red';
+                        document.querySelector('#multiple_feedback').innerHTML = 'Incorrect';
+                    });
+                }
+                let button = document.querySelector('#submit');
+
+                button.addEventListener('click', function()
+                {
+                    let input = document.querySelector('#answer');
+                    if (input.value === 'unicorn')
+                    {
+                        input.style.backgroundColor = 'lime';
+                        document.querySelector('#free_feedback').innerHTML = 'Correct!';
+                    }
+                    else
+                    {
+                        input.style.backgroundColor = 'red';
+                        document.querySelector('#free_feedback').innerHTML = 'Incorrect';
+                    }
+                });
+            });
+
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -24,14 +61,14 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                             <a class="dropdown-item" href="sports.html">Sports</a>
                             <a class="dropdown-item" href="music.html">Music</a>
-                        </div>    
+                        </div>
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fun Stuff</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <a class="dropdown-item" href="trivia.html">Trivia Page</a>
                             <a class="dropdown-item" href="button.html">Button Page</a>
-                        </div>    
+                        </div>
                     </li>
 
                 </ul>
@@ -39,15 +76,27 @@
         </nav>
         <br>
         <div class="container">
-            <h2>An Introduction</h2>
-            <p>My name is Andrew Wang. I am a high school freshman at the time of this writing.
-               I live in the United States in New York. Due to the fact that I don't want to show my face,
-               you can look at this question mark character.</p>
-            <p>
-                <img src="Random_Character_Portrait.png" width="200" alt="A man with a hat blocking his face. the hat has a question mark on it.">
-            </p>
-            <p>If this page looks boring, click on one of the links above to learn more about me.</p>
-            <br>
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>What is an octothorpe?</h3>
+                <button class="wrong">An eight-legged bug</button>
+                <button class="wrong">A special octopus</button>
+                <button class="correct">A hashtag</button>
+                <button class="wrong">A contract</button>
+                <button class="wrong">A group of farming fields</button>
+                <p id = "multiple_feedback"></p>
+
+            </div>
+
+            <div class="section" id="free_response">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is the national animal of Scotland?</h3>
+                <input id="answer" type="text">
+                <button id="submit">Submit</button>
+                <p id="free_feedback"></p>
+            </div>
         </div>
     </body>
 </html>
